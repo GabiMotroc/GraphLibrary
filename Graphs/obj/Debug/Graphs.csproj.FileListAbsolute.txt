@@ -1,0 +1,6 @@
+F:\Projects\Rider\GraphLibrary\Graphs\obj\Debug\Graphs.csproj.AssemblyReference.cache
+F:\Projects\Rider\GraphLibrary\Graphs\obj\Debug\Graphs.csproj.CoreCompileInputs.cache
+F:\Projects\Rider\GraphLibrary\Graphs\bin\Debug\Graphs.dll
+F:\Projects\Rider\GraphLibrary\Graphs\bin\Debug\Graphs.pdb
+F:\Projects\Rider\GraphLibrary\Graphs\obj\Debug\Graphs.dll
+F:\Projects\Rider\GraphLibrary\Graphs\obj\Debug\Graphs.pdb
