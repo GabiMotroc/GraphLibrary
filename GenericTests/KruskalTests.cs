@@ -9,57 +9,18 @@ namespace AlgorithmTests
     public class KruskalTests
     {
         [Theory]
-        [ClassData(typeof(WeightedGraphData))]
-        public void KruskalTest(WeightedGraph<int, float> graph)
+        [MemberData(nameof(TestGraphGenerator.GetWeightedGraph), MemberType = typeof(TestGraphGenerator))]
+        public void KruskalTest(WeightedGraph<int, float> graph, WeightedGraph<int, float> expected)
         
         {
             //Given
-
+            var algorithm = new Algorithms();
             //When
 
+            var result = algorithm.Kruskal(graph);
             //Then
-        }
-    }
-
-    public class WeightedGraphData : IEnumerable<object[]>
-    {
-        public IEnumerator<object[]> GetEnumerator()
-        {
-            yield return new object[]
-            {
-                new WeightedGraph<int, float>(new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-                    , new[]
-                    {
-                        Tuple.Create(1, 2, 12f), Tuple.Create(1, 3, 20f),
-                        Tuple.Create(2, 4, 3f), Tuple.Create(3, 5, 9f), Tuple.Create(3, 6, 2f),
-                        Tuple.Create(4, 7, 4f), Tuple.Create(7, 5, 2f), Tuple.Create(5, 8, 6f),
-                        Tuple.Create(5, 6, 4f), Tuple.Create(8, 9, 1f), Tuple.Create(8, 10, 7f),
-                        Tuple.Create(9, 10, 30f), Tuple.Create(2, 1, 12f), Tuple.Create(3, 1, 20f),
-                        Tuple.Create(4, 2, 3f), Tuple.Create(5, 3, 9f), Tuple.Create(6, 3, 2f),
-                        Tuple.Create(7, 4, 4f), Tuple.Create(5, 7, 2f), Tuple.Create(8, 5, 6f),
-                        Tuple.Create(6, 5, 4f), Tuple.Create(9, 8, 1f), Tuple.Create(10, 8, 7f),
-                        Tuple.Create(10, 9, 30f)
-                    })
-            };
             
-            yield return new object[]
-            {
-                new WeightedGraph<int, float>(new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-                    , new[]
-                    {
-                        Tuple.Create(1, 2, 12f), Tuple.Create(1, 3, 20f),
-                        Tuple.Create(2, 4, 3f), Tuple.Create(3, 5, 9f), Tuple.Create(3, 6, 2f),
-                        Tuple.Create(4, 7, 4f), Tuple.Create(7, 5, 2f), Tuple.Create(5, 8, 6f),
-                        Tuple.Create(5, 6, 4f), Tuple.Create(8, 9, 1f), Tuple.Create(8, 10, 7f),
-                        Tuple.Create(9, 10, 30f), Tuple.Create(2, 1, 12f), Tuple.Create(3, 1, 20f),
-                        Tuple.Create(4, 2, 3f), Tuple.Create(5, 3, 9f), Tuple.Create(6, 3, 2f),
-                        Tuple.Create(7, 4, 4f), Tuple.Create(5, 7, 2f), Tuple.Create(8, 5, 6f),
-                        Tuple.Create(6, 5, 4f), Tuple.Create(9, 8, 1f), Tuple.Create(10, 8, 7f),
-                        Tuple.Create(10, 9, 30f)
-                    })
-            };
+            Assert.True(expected.Equals(result));
         }
-        
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

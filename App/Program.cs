@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Graphs;
+using Newtonsoft.Json;
 
 namespace App
 {
@@ -26,6 +29,10 @@ namespace App
                 System.Console.WriteLine(item.Id);
             }
 
+            var json = JsonConvert.SerializeObject(weightedGraph.AdjacencyList ,Formatting.Indented);
+            Console.WriteLine(json);
+            System.IO.File.WriteAllText(@"C:\Users\abi\Desktop\graph.txt", json);
+            
             System.Console.WriteLine("Dijkstra results");
             var result1 = algorithms.Dijkstra(weightedGraph, new Node<int>(1));
             foreach (var (node, value) in result1)

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "XdsrC/BiwmD3PmYC5cP/BkYWwBymoExURybsjRtlSnJKb5KV/1jwU/Wr2MESbj1Fgh5p7nJXgGx8GLjuf7n3Pw==",
+  "dgSpecHash": "Z8GYsRygkDlNBBQQXRzjKaoqp9P6ef3O0Bw2p/hIgPs/OFRkXDSZk7bAdeND1mifN8ty5Aj96UzO7tP10zvMRA==",
   "success": true,
   "projectFilePath": "F:\\Projects\\Rider\\GraphLibrary\\App\\App.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\abi\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

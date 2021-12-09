@@ -79,19 +79,23 @@ namespace Graphs
             where TEdge : IWeightedEdge<T, TWeight>, new()
             where TWeight : struct, IComparable<TWeight>
         {
+            if (graph.AdjacencyList.ContainsKey(start) == false)
+                throw new ArgumentException($"The start, {start.Id} node is not part of the graph.");
+            
             var distance = new Dictionary<TNode, TWeight>();
-
             var queue = new Queue<TNode>();
             var visited = new HashSet<TNode>();
+            
             queue.Enqueue(start);
 
-            var test = ReadStaticField<TWeight>("MaxValue");
+            var maxValue = ReadStaticField<TWeight>("MaxValue");
 
             foreach (var vertex in graph.AdjacencyList.Keys)
             {
                 // queue.Enqueue(vertex);
-                distance[vertex] = test;
+                distance[vertex] = maxValue;
             }
+            
             distance[start] = default(TWeight);
 
             while (queue.Count > 0)
@@ -102,14 +106,11 @@ namespace Graphs
 
                 foreach (var neighbor in graph.AdjacencyList[currentNode])
                 {
-
-
                     var nextNode = GetTheNodeConnectedByEdge(neighbor);
                     if(!visited.Contains(currentNode))
                         queue.Enqueue(nextNode);
 
                     UpdateDistanceIfSmaller(distance, currentNode, neighbor, nextNode);
-
                 }
             }
 
@@ -131,6 +132,15 @@ namespace Graphs
             }
         }
 
+        public IWeightedGraph<T, TNode, TEdge, TWeight> Kruskal<T, TNode, TEdge, TWeight>(IWeightedGraph<T, TNode, TEdge, TWeight> graph)
+            where TNode : INode<T>, new()
+            where TEdge : IWeightedEdge<T, TWeight>, new()
+            where TWeight : struct, IComparable<TWeight>
+        {
+            var mst = graph ?? throw new ArgumentNullException(nameof(graph));
+            
+            return mst;
+        }
         public static TWeight ReadStaticField<TWeight>(string name)
         {
             FieldInfo field = typeof(TWeight).GetField(name,
@@ -145,5 +155,6 @@ namespace Graphs
             }
             return (TWeight)field.GetValue(null);
         }
+
     }
 }

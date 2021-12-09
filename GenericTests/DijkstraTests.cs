@@ -1,4 +1,6 @@
-﻿using Graphs;
+﻿using System;
+using System.Collections.Generic;
+using Graphs;
 using Xunit;
 
 namespace AlgorithmTests
@@ -11,18 +13,37 @@ namespace AlgorithmTests
             // Arrange
             const string name = "MaxValue";
             // Act
-            var gai = Algorithms.ReadStaticField<int>(name) == int.MaxValue;
+            var check = Algorithms.ReadStaticField<int>(name) == int.MaxValue;
 
             // Assert
-            Assert.True(gai, $"The max value is wrong");
+            Assert.True(check, $"The max value is wrong");
         }
 
         [Theory]
-        [ClassData(typeof(WeightedGraphData))]
-        public void DijkstraTest()
+        [MemberData(nameof(TestGraphGenerator.GetDijsktraTest), MemberType = typeof(TestGraphGenerator))]
+        public void DijkstraTest(WeightedGraph<int, float> graph, int startNode, IEnumerable<Tuple<int, float>> expected)
         {
-            const bool a = true;
-            Assert.True(a);
+            // Arrange
+            var algorithm = new Algorithms();
+            // Act
+            var result = algorithm.Dijkstra(graph, new Node<int>{ Id = startNode});
+            var finalCondition = true;
+            foreach (var (nodeId, distance) in expected)
+            {
+                var node = new Node<int> {Id = nodeId};
+                if(result.ContainsKey(node))
+                {
+                    if (result[node].Equals(distance) == false)
+                        finalCondition = false;
+                }
+                else
+                {
+                    finalCondition = false;
+                    break;
+                }
+            }
+            // Assert
+            Assert.True(finalCondition, "Dijkstra's test failed");
         }
 
         [Theory]
@@ -37,6 +58,5 @@ namespace AlgorithmTests
 
             Assert.IsType<T>(result);
         }
-
     }
 }

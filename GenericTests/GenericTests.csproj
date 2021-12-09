@@ -54,6 +54,7 @@
     <ItemGroup>
         <Compile Include="DijkstraTests.cs" />
         <Compile Include="KruskalTests.cs" />
+        <Compile Include="TestGraphGenerator.cs" />
         <Compile Include="Tests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
